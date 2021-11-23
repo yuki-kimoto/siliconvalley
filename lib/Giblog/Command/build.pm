@@ -54,6 +54,26 @@ sub run {
     # Parse description
     $api->parse_description_from_first_p_tag($data);
 
+    # Add ad
+    {
+      my $ad = <<'EOS';
+<div style="width:calc(100% - 30px);margin:10px auto;">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
+       crossorigin="anonymous"></script>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-4525414114581084"
+       data-ad-slot="2828858335"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+EOS
+      $data->{content} =~ s|</p>|</p>\n$ad\n|;
+    }
+
     # Read common templates
     $api->read_common_templates($data);
 
