@@ -1,0 +1,47 @@
+<h2>Serve List of Directories on your Command Line - Mojolicious::Plugin::Directory::Stylish</h2>
+
+Today's fresh and healthy <a href="https://en.perlzemi.com">Perl</a> information is how to serve the list of directories.
+
+You can use <a href="https://metacpan.org/pod/Mojolicious::Plugin::Directory::Stylish">Mojolicious::Plugin::Directory::Stylish</a>. This is a <a href="https://en.mojolicious.perlzemi.com/">Mojolicious</a> plugin.
+
+<h3>Installation</h3>
+
+You can install Mojolicious::Plugin::Directory::Stylish using <a href="https://en.perlzemi.com/blog/20101027127859.html">cpanm</a> command or <a href="https://en.perlzemi.com/blog/20100504127089.html">cpan</a> command.
+
+<pre>
+# cpanm
+cpanm Mojolicious::Plugin::Directory::Stylish
+
+# cpan
+cpan Mojolicious::Plugin::Directory::Stylish
+</pre>
+
+<h3>Serve List of Directories</h3>
+
+Serve List of Directories.
+
+<pre>
+#!/usr/bin/env perl
+
+use Mojolicious::Lite;
+plugin 'Directory::Stylish';
+app->start('daemon');
+</pre>
+
+You can serve the list of directories on your command line.
+
+<pre>
+perl -Mojo -E 'a->plugin("Directory::Stylish")->start' daemon
+</pre>
+
+Let's access the following URL.
+
+<pre>
+http://YourHostName:3000
+</pre>
+
+<h4>Outputs</h4>
+
+You will see the following outputs.
+
+<img src="/images/mojolicious_plugin_directory_stylish.png" style="border:1px solid #ddd">
