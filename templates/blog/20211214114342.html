@@ -1,0 +1,53 @@
+<h2>Setup Perl environment on Github Action</h2>
+
+Do you find Github Actions to setup all versions of <a href="https://en.perlzemi.com/">Perl</a>.
+
+"Setup Perl environment" is useful.
+
+<a href="https://github.com/marketplace/actions/setup-perl-environment">Setup Perl environment</a>
+
+<pre>
+Basic:
+
+steps:
+- uses: actions/checkout@v2
+- uses: shogo82148/actions-setup-perl@v1
+  with:
+    perl-version: '5.34'
+- run: cpanm --installdeps .
+- run: prove -lv t
+</pre>
+
+Perl Club use "Setup Perl environment" on Gihub Action in <a href="https://github.com/yuki-kimoto/SPVM">SPVM</a> development to test old Perl 5.8.9.
+
+<h3>Examples</h3>
+
+See the Linux example. "Setup Perl environment" has <a href="https://en.perlzemi.com/blog/20101027127859.html">cpanm</a>. You can install Perl modules using cpanm.
+
+<pre>
+name: linux-5.8.9
+
+on:
+  push:
+    branches:
+      - '*'
+    tags-ignore:
+      - '*'
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: shogo82148/actions-setup-perl@v1
+      with:
+        perl-version: '5.8.9'
+    - run: cpanm ExtUtils::CBuilder
+    - name: perl Makefile.PL
+      run: perl Makefile.PL
+    - name: make
+      run: make
+    - name: make disttest
+      run: make disttest
+</pre>
